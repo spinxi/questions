@@ -1,0 +1,51 @@
+<div class="my-4">
+  <div class="text-center">
+    <div class="mt-4">
+      <p class="text-maincolor-100 font-semibold text-xl">
+        კითხვარი
+      </p>
+    </div>
+  </div>
+
+  <div class="w-full max-w-[26rem] p-4 sm:px-5">
+    <div class="card mt-5 rounded-lg p-5 lg:p-10">
+      <div class="grid grid-cols-2 gap-4 mb-5">
+        <button class="btn bg-[#DEEFFF] font-medium text-maincolor-100 font-bold" (click)="setActiveTab('login')">
+          ავტორიზაცია
+        </button>
+        <button class="btn bg-slate-150 font-medium text-maincolor-100 border border-slate-300 font-bold" (click)="setActiveTab('register')">
+          რეგისტრაცია
+        </button>
+      </div>
+
+      <form *ngIf="isActive('login')" (ngSubmit)="login()">
+        <label class="block">
+          <span class="text-maincolor-50 font-normal">მომხმარებლის სახელი</span>
+          <input [(ngModel)]="loginData.username" name="username" class="form-input peer w-full rounded-lg border border-slate-300 bg-transparent px-3 py-2 placeholder:text-slate-400/70 hover:z-10 hover:border-slate-400 focus:z-10 focus:border-primary dark:border-navy-450 dark:hover:border-navy-400 dark:focus:border-accent" placeholder="მომხმარებლის სახელი" type="text" required>
+        </label>
+        <label class="mt-4 block">
+          <span class="text-maincolor-50 font-normal">პაროლი</span>
+          <input [(ngModel)]="loginData.password" name="password" class="form-input peer w-full rounded-lg border border-slate-300 bg-transparent px-3 py-2 placeholder:text-slate-400/70 hover:z-10 hover:border-slate-400 focus:z-10 focus:border-primary dark:border-navy-450 dark:hover:border-navy-400 dark:focus:border-accent" placeholder="********" type="password" required>
+        </label>
+
+        <button type="submit" class="btn mt-5 w-full bg-maincolor-100 font-medium text-white">შესვლა</button>
+      </form>
+
+      <form *ngIf="isActive('register')" (ngSubmit)="register()">
+        <label class="block">
+          <span class="text-maincolor-50 font-normal">მომხმარებლის სახელი</span>
+          <input [(ngModel)]="registerData.username" name="username" class="form-input peer w-full rounded-lg border border-slate-300 bg-transparent px-3 py-2 placeholder:text-slate-400/70 hover:z-10 hover:border-slate-400 focus:z-10 focus:border-primary dark:border-navy-450 dark:hover:border-navy-400 dark:focus:border-accent" placeholder="მომხმარებლის სახელი" type="text" required>
+        </label>
+        <label class="mt-4 block">
+          <span class="text-maincolor-50 font-normal">პაროლი</span>
+          <input [(ngModel)]="registerData.password" name="password" class="form-input peer w-full rounded-lg border border-slate-300 bg-transparent px-3 py-2 placeholder:text-slate-400/70 hover:z-10 hover:border-slate-400 focus:z-10 focus:border-primary dark:border-navy-450 dark:hover:border-navy-400 dark:focus:border-accent" placeholder="********" type="password" required>
+        </label>
+        <label class="mt-4 block">
+          <span class="text-maincolor-50 font-normal">როლი</span>
+          <input [(ngModel)]="registerData.role" name="role" class="form-input peer w-full rounded-lg border border-slate-300 bg-transparent px-3 py-2 placeholder:text-slate-400/70 hover:z-10 hover:border-slate-400 focus:z-10 focus:border-primary dark:border-navy-450 dark:hover:border-navy-400 dark:focus:border-accent" placeholder="როლი" type="text" required>
+        </label>
+        <button type="submit" class="btn mt-5 w-full bg-maincolor-100 font-medium text-white">რეგისტრაცია</button>
+      </form>
+    </div>
+  </div>
+</div>

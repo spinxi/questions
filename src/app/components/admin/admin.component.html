@@ -1,0 +1,105 @@
+<div class="bg-white shadow-md">
+  <nav class="container mx-auto px-6 py-3">
+    <div class="flex justify-between items-center">
+      <div class="text-lg font-semibold text-maincolor-100">Admin Panel</div>
+      <div>
+        <button routerLink="/admin" class="text-gray-700 hover:text-maincolor-100 mx-4">დამატება</button>
+        <button routerLink="/submitted" class="text-gray-700 hover:text-maincolor-100 mx-4">გადმოგზავნილი/ შევსებული კითხვები</button>
+      </div>
+    </div>
+  </nav>
+</div>
+<div class="grid grid-cols-2 gap-10 mb-5">
+    <!-- Left side: Add Question Form -->
+    <div class="card my-52">
+      <form [formGroup]="addQuestionForm" (ngSubmit)="onSubmit()">
+  
+        <div class="my-4 px-20">
+          <div class="flex flex-row mb-5">
+            <ng-container *ngIf="addQuestionForm.get('questionText')?.invalid && addQuestionForm.get('questionText')?.touched; else label">
+              <span class="mr-5 text-sm text-red-600 font-medium self-end">კითხვა</span>
+            </ng-container>
+            <ng-template #label>
+              <span class="mr-5 text-sm font-medium text-maincolor-100 self-end">კითხვა</span>
+            </ng-template>
+            <span>
+              <input type="text" id="questionText" formControlName="questionText"
+              class="form-input mt-1.5 w-full border-b border-slate-300 bg-transparent px-3 py-2 placeholder:text-slate-400/70 "
+              [class.border-b-red-500]="addQuestionForm.get('questionText')?.invalid && addQuestionForm.get('questionText')?.touched">
+           
+            </span>
+               
+          </div>
+        </div>
+        
+
+        <div class="mb-10 px-20">
+          <div class="flex flex-row mb-5">
+            <ng-container *ngIf="addQuestionForm.get('questionAnswer')?.invalid && addQuestionForm.get('questionAnswer')?.touched; else label">
+              <span class="mr-5 text-sm text-red-600 font-medium self-end">პასუხი</span>
+            </ng-container>
+            <ng-template #label>
+              <span class="mr-5 text-sm font-medium text-maincolor-100 self-end">პასუხი</span>
+            </ng-template>
+            <span>
+              <input type="text" id="questionAnswer" formControlName="questionAnswer"
+              class="form-input mt-1.5 w-full border-b border-slate-300 bg-transparent px-3 py-2 placeholder:text-slate-400/70 "
+              [class.border-b-red-500]="addQuestionForm.get('questionAnswer')?.invalid && addQuestionForm.get('questionAnswer')?.touched">
+          
+            </span>
+               
+          </div>
+        </div>
+        
+
+
+        <div class="mb-4 px-20">
+          <div class="flex flex-row mb-5">
+            <span class="mr-5 text-sm font-medium text-maincolor-100 self-center">სავალდებულო</span>
+            <span class="self-center">
+              <input type="checkbox" id="isMandatory" formControlName="isMandatory"
+                   class="form-checkbox is-basic size-5 rounded border-slate-400/70 checked:bg-[#4d7c0f] checked:!border-[#4d7c0f] hover:!border-[#4d7c0f] focus:!border-[#4d7c0f]">
+           
+            </span>
+               
+
+            <button type="submit" class="ml-10 bg-maincolor-100 text-white font-semibold py-2 px-4 rounded-lg shadow-sm">
+              დამატება
+            </button>
+          </div>
+        </div>
+      
+  
+        
+      </form>
+    </div>
+  
+    <!-- Right side: List of All Questions -->
+    <div class="card my-52">
+
+        <span *ngFor="let question of questions" class="mb-6">
+          <div class="my-4 px-20">
+            <div class="flex flex-row mb-5">
+              <span class="mr-5 text-sm font-medium text-maincolor-100 self-end">კითხვა</span>
+              <span class="form-input mt-1.5 w-full border-b border-slate-300 bg-transparent px-3 py-2">{{ question.questionText }}</span>
+            </div>
+          </div>
+          <div class="mb-10 px-20">
+            <div class="flex flex-row mb-5">
+              <span class="mr-5 text-sm font-medium text-maincolor-100 self-end">პასუხი</span>
+              <span class="form-input mt-1.5 w-full border-b border-slate-300 bg-transparent px-3 py-2">{{ question.questionAnswer }}</span>
+            </div>
+          </div>
+          <div class="mb-4 px-20">
+            <div class="flex flex-row mb-5">
+              <span class="mr-5 text-sm font-medium text-maincolor-100 self-center">სავალდებულო</span>
+              <span class="form-checkbox is-basic size-5 rounded border-slate-400/70 checked:bg-[#4d7c0f] checked:!border-[#4d7c0f] hover:!border-[#4d7c0f] focus:!border-[#4d7c0f]">
+                <input type="checkbox" [checked]="question.isMandatory" disabled>
+              </span>
+            </div>
+          </div>
+        </span>
+
+    </div>
+  </div>
+  

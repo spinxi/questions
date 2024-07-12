@@ -1,0 +1,27 @@
+<div class="flex">
+    <!-- Left side: Usernames -->
+    <div class="w-1/4 p-4">
+      <h2>Usernames</h2>
+      <ul>
+        <li *ngFor="let user of users" class="cursor-pointer mb-2"
+            (click)="getUserResponses(user.id)">
+          {{ user.username }}
+        </li>
+      </ul>
+    </div>
+  
+    <!-- Right side: User responses -->
+    <div class="w-3/4 p-4">
+      <h2>Submitted Responses</h2>
+      <div *ngIf="selectedUserResponses.length === 0" class="text-gray-500">
+        Select a user to view their responses.
+      </div>
+      <div *ngFor="let response of selectedUserResponses" class="mb-4">
+        <div class="border border-gray-300 p-3 rounded-lg">
+          <h3 class="font-medium text-maincolor-100 mb-2">{{ response.questionText }}</h3>
+          <p class="text-sm text-gray-700">{{ response.responseText }}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  
